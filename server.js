@@ -22,6 +22,12 @@ app.use((req, res, next) => {
 app.use('/api/workouts', workoutRoutes)
 app.use('/api/user', userRoutes)
 
+// Endpoint to keep the server awake
+app.get('/keep-alive', (req, res) => {
+    res.send('Server is awake');
+    console.log('Server is awake');
+  });
+
 //connect to db
 mongoose.connect(process.env.MONGO_URI)
     .then(() => {
@@ -33,8 +39,3 @@ mongoose.connect(process.env.MONGO_URI)
     .catch((error) => {
         console.log(error)
     })
-
-
-
-
- 
